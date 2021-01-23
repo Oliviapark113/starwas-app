@@ -2,6 +2,10 @@ const express = require('express')
 const app = express()
 const PORT = 3000
 
+app.use(express.urlencoded({extended:true}))
+app.use(express.json())
+
+
 const characters = [
     {
     name: 'Yoda',
@@ -54,10 +58,22 @@ app.get('/api/characters', (req,res)=>{
 app.get('/api/characters/:routeName', (req,res)=>{
   const targetCharacter = req.params.routeName
     //to view console.log (enter in browser route and see terminal)
-   console.log(req.params) 
+
    const character =  characters.find( (character)=>{
+       //console.log(character)...
         return character.routeName === targetCharacter
    })
+
+   res.json(character)
+
+})
+
+
+
+app.post('/api/characters/add',(req, res)=>{
+    console.log(req.body)
+    res.end()
+
 })
 
 
