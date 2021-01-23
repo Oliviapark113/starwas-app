@@ -69,10 +69,15 @@ app.get('/api/characters/:routeName', (req,res)=>{
 })
 
 
-
+//add new characters 
 app.post('/api/characters/add',(req, res)=>{
-    console.log(req.body)
-    res.end()
+    // console.log(req.body)
+    const newCharacter = req.body
+
+    newCharacter.routeName = newCharacter.name.replace(/ /g, '').toLowerCase()
+    characters.push(newCharacter)
+    // console.log(characters)
+    res.status(200).send()
 
 })
 
