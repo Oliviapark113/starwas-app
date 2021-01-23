@@ -50,8 +50,15 @@ app.get('/api/characters', (req,res)=>{
 })
 
 
-// api/characters/:routeName(parameter..can be dynamic) - show all character data/  such as /api/characters/princessleia
-
+// api/characters/:routeName/:more /:more(parameter..can be dynamic) - show all character data/  such as /api/characters/princessleia
+app.get('/api/characters/:routeName', (req,res)=>{
+  const targetCharacter = req.params.routeName
+    //to view console.log (enter in browser route and see terminal)
+   console.log(req.params) 
+   const character =  characters.find( (character)=>{
+        return character.routeName === targetCharacter
+   })
+})
 
 
 app.listen(PORT, ()=>{
